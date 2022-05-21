@@ -75,10 +75,10 @@ extension TimeLineViewController: UITableViewDelegate, UITableViewDataSource {
                 if let imageData = UIImage(contentsOfFile: path) {
                     tweetImageView.image = imageData
                 } else {
-                    print("Failed to load the image.")
+                    print("Failed to load the image. path = ", path)
                 }
             } else {
-                print("Image file not found.")
+                print("Image file not found. path = ", path)
             }
         }
         return cell

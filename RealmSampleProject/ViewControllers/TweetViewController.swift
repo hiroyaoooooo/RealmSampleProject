@@ -40,7 +40,16 @@ class TweetViewController: UIViewController {
     
     // ツイートボタンを押したときのアクション
     @IBAction func didTapTweetButton() {
+        guard let _ = tweetTextFeild.text else { return }
+        
+        saveTweet()
+        self.dismiss(animated: true)
+    }
+    
+    // ツイートを保存するメソッド
+    func saveTweet() {
         guard let tweetText = tweetTextFeild.text else { return }
+
         let tweet = Tweet()
         tweet.tweetText = tweetText
         
@@ -53,8 +62,6 @@ class TweetViewController: UIViewController {
         try! realm.write({
             realm.add(tweet)
         })
-        
-        self.dismiss(animated: true)
     }
     
     // 画像を保存するメソッド
@@ -65,7 +72,6 @@ class TweetViewController: UIViewController {
             let fileName = UUID().uuidString + ".jpeg"
             let imageURL = getImageURL(fileName: fileName)
             try imageData.write(to: imageURL)
-            print("Image saved.")
             return fileName
         } catch {
             print("Failed to save the image:", error)

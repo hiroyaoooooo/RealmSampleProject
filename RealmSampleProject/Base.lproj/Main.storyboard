@@ -35,7 +35,7 @@
                                                         <constraint firstAttribute="height" constant="32" id="V84-oc-IPI"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swiftめっちゃ楽しいです。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hun-Cd-eFL">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お花が綺麗だな~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hun-Cd-eFL">
                                                     <rect key="frame" x="28" y="59" width="358" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="BCi-fM-71J"/>
