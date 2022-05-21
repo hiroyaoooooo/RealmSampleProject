@@ -43,8 +43,7 @@ class TimeLineViewController: UIViewController {
     
     // Realmからデータを取得してテーブルビューを再リロードするメソッド
     func getTweetData() {
-        tweets = Array(realm.objects(Tweet.self)).reversed()
-        tableView.reloadData()
+        // TODO: ②保存済みのツイートを取得する
     }
     
     
@@ -54,7 +53,8 @@ extension TimeLineViewController: UITableViewDelegate, UITableViewDataSource {
     
     // TableViewが何個のCellを表示するのか設定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tweets.count
+        // TODO: ③Cellの個数を指定する
+        return 10
     }
     
     // Cellの中身を設定するデリゲートメソッド
@@ -63,38 +63,21 @@ extension TimeLineViewController: UITableViewDelegate, UITableViewDataSource {
         guard let userImageView = cell.viewWithTag(1) as? UIImageView,
               let tweetLabel = cell.viewWithTag(3) as? UILabel,
               let tweetImageView = cell.viewWithTag(4) as? UIImageView else { return cell }
-        
-        let tweet = tweets[indexPath.row]
-        let image = UIImage(named: "Kenty")
-        userImageView.image = image
-        tweetLabel.text = tweet.tweetText
-        
-        if let imageFileName = tweet.imageFileName {
-            let path = getImageURL(fileName: imageFileName).path
-            if FileManager.default.fileExists(atPath: path) {
-                if let imageData = UIImage(contentsOfFile: path) {
-                    tweetImageView.image = imageData
-                } else {
-                    print("Failed to load the image. path = ", path)
-                }
-            } else {
-                print("Image file not found. path = ", path)
-            }
-        }
+        // TODO: ④Cellの中身を指定する
         return cell
     }
     
     
-    // URLを取得するメソッド
-    func getImageURL(fileName: String) -> URL {
-        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return docDir.appendingPathComponent(fileName)
-    }
+//    // URLを取得するメソッド
+//    func getImageURL(fileName: String) -> URL {
+//        // TODO: ②-③ URLをゲットする②
+//
+//    }
     
     // Cellのサイズを設定するデリゲートメソッド
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let tweet = tweets[indexPath.row]
-        return tweet.imageFileName == nil ? 85 : 305
+        // TODO: ②-④Cellの高さを指定する
+        return 90
     }
     
 }

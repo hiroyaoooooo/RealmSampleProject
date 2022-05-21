@@ -49,41 +49,20 @@ class TweetViewController: UIViewController {
     // ツイートを保存するメソッド
     func saveTweet() {
         guard let tweetText = tweetTextFeild.text else { return }
-
-        let tweet = Tweet()
-        tweet.tweetText = tweetText
-        
-        // 画像がボタンにセットされてたら画像も保存
-        if let tweetImage = imageButton.backgroundImage(for: .normal){
-            let imageURLStr = saveImage(image: tweetImage)
-            tweet.imageFileName = imageURLStr
-        }
-        
-        try! realm.write({
-            realm.add(tweet)
-        })
+        // TODO: ①ツイートを保存する
     }
     
-    // 画像を保存するメソッド
-    func saveImage(image: UIImage) -> String? {
-        guard let imageData = image.jpegData(compressionQuality: 1.0) else { return nil }
-        
-        do {
-            let fileName = UUID().uuidString + ".jpeg"
-            let imageURL = getImageURL(fileName: fileName)
-            try imageData.write(to: imageURL)
-            return fileName
-        } catch {
-            print("Failed to save the image:", error)
-            return nil
-        }
-    }
-    
-    // URLを取得するメソッド
-    func getImageURL(fileName: String) -> URL {
-        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return docDir.appendingPathComponent(fileName)
-    }
+//    // 画像を保存しファイル名を返すメソッド
+//    func saveImage(image: UIImage) -> String? {
+//        guard let imageData = image.jpegData(compressionQuality: 1.0) else { return nil }
+//        // TODO: ②-② 画像を保存する
+//
+//    }
+//    
+//    // URLを取得するメソッド
+//    func getImageURL(fileName: String) -> URL {
+//        // TODO: ②-① URLをゲットする
+//    }
     
     // 画像選択ボタンを押したときのアクション
     @IBAction func didTapImageButton() {
