@@ -60,13 +60,10 @@ extension TimeLineViewController: UITableViewDelegate, UITableViewDataSource {
     // Cellの中身を設定するデリゲートメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath)
-        guard let userImageView = cell.viewWithTag(1) as? UIImageView,
-              let tweetLabel = cell.viewWithTag(3) as? UILabel,
+        guard let tweetLabel = cell.viewWithTag(3) as? UILabel,
               let tweetImageView = cell.viewWithTag(4) as? UIImageView else { return cell }
         
         let tweet = tweets[indexPath.row]
-        let image = UIImage(named: "Kenty")
-        userImageView.image = image
         tweetLabel.text = tweet.tweetText
         
         if let imageFileName = tweet.imageFileName {
@@ -94,7 +91,7 @@ extension TimeLineViewController: UITableViewDelegate, UITableViewDataSource {
     // Cellのサイズを設定するデリゲートメソッド
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let tweet = tweets[indexPath.row]
-        return tweet.imageFileName == nil ? 85 : 305
+        return tweet.imageFileName == nil ? 90 : 310
     }
     
 }
