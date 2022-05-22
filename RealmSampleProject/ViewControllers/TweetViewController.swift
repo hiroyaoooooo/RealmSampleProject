@@ -51,16 +51,16 @@ class TweetViewController: UIViewController {
         guard let tweetText = tweetTextFeild.text else { return }
 
         let tweet = Tweet()
-        tweet.tweetText = tweetText
+        tweet.tweetText = tweetText // ツイートのテキストをセット
         
         // 画像がボタンにセットされてたら画像も保存
         if let tweetImage = imageButton.backgroundImage(for: .normal){
-            let imageURLStr = saveImage(image: tweetImage)
+            let imageURLStr = saveImage(image: tweetImage) //画像を保存
             tweet.imageFileName = imageURLStr
         }
         
         try! realm.write({
-            realm.add(tweet)
+            realm.add(tweet) // レコードを追加
         })
     }
     
@@ -69,9 +69,9 @@ class TweetViewController: UIViewController {
         guard let imageData = image.jpegData(compressionQuality: 1.0) else { return nil }
         
         do {
-            let fileName = UUID().uuidString + ".jpeg"
-            let imageURL = getImageURL(fileName: fileName)
-            try imageData.write(to: imageURL)
+            let fileName = UUID().uuidString + ".jpeg" // ファイル名を決定(UUIDは、ユニークなID)
+            let imageURL = getImageURL(fileName: fileName) // 保存先のURLをゲット
+            try imageData.write(to: imageURL) // imageURLに画像を書き込む
             return fileName
         } catch {
             print("Failed to save the image:", error)
@@ -100,7 +100,7 @@ extension TweetViewController: UINavigationControllerDelegate, UIImagePickerCont
     // ライブラリから戻ってきた時に呼ばれるデリゲートメソッド
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return picker.dismiss(animated: true) }
-        imageButton.setBackgroundImage(pickedImage, for: .normal)
+        imageButton.setBackgroundImage(pickedImage, for: .normal) // imageButtonのバックグラウンドに選択した画像をセット
         picker.dismiss(animated: true)
     }
 }

@@ -43,8 +43,8 @@ class TimeLineViewController: UIViewController {
     
     // Realmからデータを取得してテーブルビューを再リロードするメソッド
     func getTweetData() {
-        tweets = Array(realm.objects(Tweet.self)).reversed()
-        tableView.reloadData()
+        tweets = Array(realm.objects(Tweet.self)).reversed()  // Realm DBから保存されてるツイートを全取得
+        tableView.reloadData() // テーブルビューをリロード
     }
     
     
@@ -67,9 +67,9 @@ extension TimeLineViewController: UITableViewDelegate, UITableViewDataSource {
         tweetLabel.text = tweet.tweetText
         
         if let imageFileName = tweet.imageFileName {
-            let path = getImageURL(fileName: imageFileName).path
-            if FileManager.default.fileExists(atPath: path) {
-                if let imageData = UIImage(contentsOfFile: path) {
+            let path = getImageURL(fileName: imageFileName).path // 画像のパスを取得
+            if FileManager.default.fileExists(atPath: path) { // pathにファイルが存在しているかチェック
+                if let imageData = UIImage(contentsOfFile: path) { // pathに保存されている画像を取得
                     tweetImageView.image = imageData
                 } else {
                     print("Failed to load the image. path = ", path)
